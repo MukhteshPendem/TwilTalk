@@ -17,13 +17,23 @@ class Data {
                 title: 'Programmers at Work',
                 code : 'developers',
                 startTime:"2025-02-20T14:00:00.220Z",
-                speakers:["+916304894373"],
+                speakers:[{
+
+                    name:'Mukhtesh',
+                    phoneNumber: "+916304894373"
+
+                }],
             },
             {
                 title: 'Ted talks every tuesday',
                 code : 'tedtalk',
                 startTime:"2025-02-20T14:00:00.220Z",
-                speakers:["+916304894373"],
+                speakers:[{
+
+                    name:'Mukhtesh',
+                    phoneNumber: "+916304894373"
+
+                }],
             }
         ];
 

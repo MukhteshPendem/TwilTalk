@@ -16,7 +16,11 @@ exports.handler = function (context,event,callback){
 
     if (talk !== undefined){
 
-        twiml.dial().conference({muted:false},talk.code);
+        twiml.dial().conference({
+            muted:false,
+            beep:false,
+            startConferenceOnEnter: false
+        },talk.code);
     }
 
     else{

@@ -29,6 +29,63 @@ class Data {
 
     }
 
+    getTalkByCode(code){
+
+        const talks = this.getUpcomingTalks();
+
+        return talks.find((t) => t.code === code);
+
+    }
+
+    addRegistration(code, phoneNumber){
+
+        return true;
+
+    }
+
+    async getRegistrants (talk){
+
+        //TODO: THIS NEEDS TO COME FROM AN EXTERNAL SOURCE NOT FROM LOGS
+
+        const client = this.context.getTwilioClient();
+
+        const messages = await client.messages.list({
+            to: this.context.TWILIO_PHONE_NUMBER
+        })
+
+        return messages.filter((message) => {
+
+            const action = this.parseInput(msg.body);
+
+            return action.command === "join" && action.code === talk.code;
+        }).map((message) => {
+            return {phoneNumber: message.from}
+        })
+    }
+
+    parseInput(input){
+
+        // join code
+
+        const action = {
+            input
+        };
+
+        const normalized = input.trim().toLowerCase();
+
+        const parts = normalized.split(/\s+/);
+
+        if (parts.length === 2) {
+
+            action.command = parts[0];
+            action.code = parts[1];
+        }
+
+        return action;
+
+    }
+
+
 }
 
 

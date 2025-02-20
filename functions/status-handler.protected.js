@@ -16,9 +16,9 @@ exports.handler = async function (context,event,callback) {
             const call = await client.calls(event.callSid).fetch();
             const attendeeNumber = call.direction === "outbound-api" ? call.to : call.from
             const message = await client.messages.create({
-                //TODO: BUY A NUMBER IN TWILIO FOR POLL SURVEY MESSAGING SERVICE(SO THAT WE CAN HAVE FROM NUMBER BELOW)
+                //TODO: BUY A NUMBER IN TWILIO FOR POLL SURVEY MESSAGING SERVICE(SO THAT WE CAN HAVE MESSAGING SERVICE SID NUMBER BELOW)
                 to:attendeeNumber,
-                from:"",
+                messagingServiceSid:context.MESSAGING_SERVICE_SID,
                 body:`Thanks for attending ${talk.title}, On a scale of
                  1 to 10, how likely are you to recommend TwilTalk to your friends`,
 

@@ -10,6 +10,13 @@ exports.handler = async function (context,event,callback) {
     const talk = data.getTalkByCode(code);
     const speakerCallSids = [];
     console.log("Calling Speakers.....");
+
+    let domainName = context.DOMAIN_NAME;
+
+    if (domainName.startsWith("localhost")) {
+        domainName = " fae9-2409-40f0-30a6-a133-393a-6fbc-c695-f232.ngrok-free.app"
+    }
+
     for (const speaker of talk.speakers) {
 
         const participant = await client
@@ -19,7 +26,9 @@ exports.handler = async function (context,event,callback) {
                 from: context.TWILIO_PHONE_NUMBER,
                 label:speaker.name,
                 beep:true,
-                startConferenceOnEnter:true
+                startConferenceOnEnter:true,
+                conferenceStatusCallback:`https://${domainName}/status-handler`,
+                conferenceStatusCallbackEvent:["leave"]
 
             });
 

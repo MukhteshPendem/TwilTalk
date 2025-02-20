@@ -55,7 +55,7 @@ class Data {
 
         return messages.filter((message) => {
 
-            const action = this.parseInput(msg.body);
+            const action = this.parseInput(message.body);
 
             return action.command === "join" && action.code === talk.code;
         }).map((message) => {

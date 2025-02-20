@@ -8,8 +8,9 @@
     "deploy": "twilio-run deploy"
   },
   "dependencies": {
-    "twilio": "5.0.3",
-    "@twilio/runtime-handler": "2.0.3"
+    "@twilio/runtime-handler": "2.0.1",
+    "node-dotenv": "^1.1.1",
+    "twilio": "5.0.3"
   },
   "devDependencies": {
     "twilio-run": "^4.0.3"
